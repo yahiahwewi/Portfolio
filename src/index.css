@@ -1,0 +1,692 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for Matrix-inspired design */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Source Code Pro', 'Fira Code', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background: #000;
+  color: #fff;
+}
+
+/* Navigation styles with fixed height */
+.nav-default {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+  height: 80px;
+}
+
+.nav-scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 255, 65, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+  height: 80px;
+}
+
+/* Navigation spacing adjustments */
+nav {
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+/* Hero section specific spacing */
+#hero {
+  min-height: 100vh;
+  padding-top: 120px; /* Increased top padding for navbar clearance */
+  padding-bottom: 80px; /* Bottom padding for visual breathing room */
+  margin-bottom: 40px; /* Margin to separate from next section */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure proper spacing for all sections after hero */
+section:not(#hero) {
+  margin-top: 40px;
+  padding-top: 60px;
+}
+
+/* Additional spacing utilities */
+.pt-nav {
+  padding-top: 120px;
+}
+
+.mt-nav {
+  margin-top: 120px;
+}
+
+.pb-section {
+  padding-bottom: 80px;
+}
+
+.mb-section {
+  margin-bottom: 40px;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin-slow,
+  .animate-spin {
+    animation: none !important;
+  }
+
+  /* Show all content immediately for reduced motion */
+  .boot-log-line {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00ff41, #00bcd4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #00ff41, #00e5ff);
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid #00ff41;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Developer-inspired animations */
+@keyframes matrix-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 15px #00ff41;
+  }
+  50% {
+    text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41;
+  }
+}
+
+@keyframes terminal-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 193, 0.3), 0 0 10px rgba(0, 255, 193, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 255, 193, 0.5), 0 0 25px rgba(0, 255, 193, 0.3);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.8), 0 0 30px rgba(0, 255, 65, 0.6);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bootSequence {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes binaryRain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes codeFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-10px) rotate(-5deg);
+    opacity: 0.6;
+  }
+}
+
+/* Utility classes */
+.animate-matrix-glow {
+  animation: matrix-glow 2s ease-in-out infinite;
+}
+
+.animate-terminal-glow {
+  animation: terminal-glow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.animate-typewriter {
+  animation: typewriter 2s steps(40, end);
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.animate-boot-sequence {
+  animation: bootSequence 0.2s ease-out forwards;
+}
+
+.animate-binary-rain {
+  animation: binaryRain 8s linear infinite;
+}
+
+.animate-code-float {
+  animation: codeFloat 4s ease-in-out infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #00ff41 0%, #00bcd4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(0, 255, 65, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+/* Terminal-specific styles */
+.terminal-window {
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #00ffc6;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 198, 0.3),
+    inset 0 0 20px rgba(0, 255, 198, 0.1);
+}
+
+.terminal-content {
+  background: #0d0d0d;
+  color: #00ffc6;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 198, 0.5);
+}
+
+.terminal-content:hover {
+  text-shadow: 0 0 10px rgba(0, 255, 198, 0.8);
+}
+
+/* Boot log specific styles */
+.boot-log-line {
+  transition: all 0.3s ease-out;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.boot-log-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.boot-log-line.success {
+  color: #4ade80;
+}
+
+.boot-log-line.fail {
+  color: #f87171;
+  animation: glitch 0.3s ease-in-out;
+}
+
+.boot-log-line.warning {
+  color: #fbbf24;
+}
+
+.boot-log-line.timestamp {
+  color: #22d3ee;
+}
+
+.boot-log-line.prompt {
+  color: #4ade80;
+}
+
+/* Skill tooltip styles */
+.skill-tooltip {
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  max-width: 300px;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 255, 65, 0.2);
+}
+
+/* Neon glow effects */
+.neon-cyan {
+  color: #00bcd4;
+  text-shadow: 0 0 5px #00bcd4, 0 0 10px #00bcd4, 0 0 15px #00bcd4;
+}
+
+.neon-green {
+  color: #00ff41;
+  text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41, 0 0 15px #00ff41;
+}
+
+.neon-mint {
+  color: #00ffc6;
+  text-shadow: 0 0 5px #00ffc6, 0 0 10px #00ffc6, 0 0 15px #00ffc6;
+}
+
+.neon-red {
+  color: #ff4444;
+  text-shadow: 0 0 5px #ff4444, 0 0 10px #ff4444, 0 0 15px #ff4444;
+}
+
+.neon-yellow {
+  color: #ffff44;
+  text-shadow: 0 0 5px #ffff44, 0 0 10px #ffff44, 0 0 15px #ffff44;
+}
+
+/* Section snap points */
+section {
+  scroll-snap-align: start;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+.hover-terminal-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 198, 0.6);
+}
+
+/* Terminal styles */
+.terminal-header {
+  background: rgba(0, 255, 65, 0.1);
+  border-bottom: 1px solid #00ff41;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-dot.red {
+  background: #ff5f56;
+}
+
+.terminal-dot.yellow {
+  background: #ffbd2e;
+}
+
+.terminal-dot.green {
+  background: #27ca3f;
+}
+
+/* Loading animation */
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(0, 255, 65, 0.1) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .hologram-container {
+    width: 250px;
+    height: 250px;
+  }
+
+  /* Adjust hero spacing for mobile */
+  #hero {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    margin-bottom: 20px;
+  }
+
+  section:not(#hero) {
+    margin-top: 20px;
+    padding-top: 40px;
+  }
+
+  .terminal-content {
+    font-size: 12px;
+  }
+
+  /* Boot log mobile adjustments */
+  .boot-log-line {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .skill-tooltip {
+    font-size: 10px;
+    max-width: 250px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass {
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #00ff41;
+  }
+  
+  .neon-cyan,
+  .neon-green,
+  .neon-mint,
+  .neon-red,
+  .neon-yellow {
+    text-shadow: none;
+    font-weight: bold;
+  }
+
+  .terminal-window {
+    border-width: 3px;
+    box-shadow: none;
+  }
+
+  .boot-log-line {
+    font-weight: 600;
+  }
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-padding-top: 120px; /* Account for fixed navbar */
+}
+
+/* Visual hierarchy improvements */
+.section-spacing {
+  padding: 80px 0;
+  margin: 40px 0;
+}
+
+.content-spacing {
+  padding: 60px 0;
+}
+
+/* Ensure proper visual flow between sections */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+  margin: 40px 0;
+}
+
+/* Custom color utilities for dynamic classes */
+.text-cyan-400 {
+  color: #22d3ee;
+}
+
+.text-green-400 {
+  color: #4ade80;
+}
+
+.text-yellow-400 {
+  color: #facc15;
+}
+
+.text-purple-400 {
+  color: #c084fc;
+}
+
+.text-red-400 {
+  color: #f87171;
+}
+
+.border-cyan-500\/20 {
+  border-color: rgba(6, 182, 212, 0.2);
+}
+
+.border-green-500\/20 {
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.border-yellow-500\/20 {
+  border-color: rgba(234, 179, 8, 0.2);
+}
+
+.border-purple-500\/20 {
+  border-color: rgba(168, 85, 247, 0.2);
+}
+
+.border-red-500\/20 {
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.bg-cyan-500\/10 {
+  background-color: rgba(6, 182, 212, 0.1);
+}
+
+.bg-green-500\/10 {
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+.bg-yellow-500\/10 {
+  background-color: rgba(234, 179, 8, 0.1);
+}
+
+.bg-purple-500\/10 {
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+.bg-red-500\/10 {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Terminal scrollbar styling */
+.terminal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 65, 0.3);
+  border-radius: 3px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.5);
+}
